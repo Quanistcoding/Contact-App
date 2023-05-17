@@ -49,7 +49,7 @@ const UserTable = ({ users, onDelete }: Props) => {
                 <Td>{user?.phone || ""}</Td>
                 <Show above="xl">
                   <Td>{user?.address || ""}</Td>
-                  {authUser?.uid === user?.googleId && (
+                  {authUser?.uid === user?.googleId ? (
                     <Td>
                       <Button
                         colorScheme="red"
@@ -67,6 +67,8 @@ const UserTable = ({ users, onDelete }: Props) => {
                         </Button>
                       </Link>
                     </Td>
+                  ) : (
+                    <Td></Td>
                   )}
                 </Show>
               </Tr>
