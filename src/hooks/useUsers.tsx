@@ -8,10 +8,12 @@ const useUsers = () => {
   const { searchText } = useSearch();
 
   useEffect(() => {
-    userService.findRealTime((data) => {
+    const unsubscribe = userService.findRealTime((data) => {
       console.log(data);
       setUsers(data);
     });
+
+    return unsubscribe;
   }, [searchText]);
   return { users, setUsers };
 };

@@ -21,7 +21,6 @@ interface Props {
 
 const UserTable = ({ users, onDelete }: Props) => {
   const { authUser } = useAuth();
-  console.log(users);
   return (
     <>
       <TableContainer>
