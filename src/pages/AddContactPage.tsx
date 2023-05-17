@@ -60,7 +60,7 @@ const AddContactPage = () => {
     const target = event.target as HTMLInputElement;
     setData({ ...data, [target!.name]: target!.value });
   };
-  if (!authUser) return <Navigate to="/login" />;
+  // if (!authUser) return <Navigate to="/login" />;
   return (
     <form>
       <FormControl marginY={5}>

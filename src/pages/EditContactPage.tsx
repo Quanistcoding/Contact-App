@@ -61,7 +61,7 @@ const EditContactPage = () => {
     setUser({ ...user, [target!.name]: target!.value });
   };
 
-  if (!authUser) return <Navigate to="/login" />;
+  //   if (!authUser) return <Navigate to="/login" />;
   return (
     <form>
       <FormControl marginY={5}>

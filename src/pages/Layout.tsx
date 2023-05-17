@@ -1,11 +1,12 @@
 import Navbar from "../components/Navbar";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
 import SearchProvider from "../providers/searchProvider";
 import useAuth from "../providers/authProvider/useAuth";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase";
+import LoginPage from "./LoginPage";
 
 const Layout = () => {
   const { authUser, setAuthUser } = useAuth();
@@ -32,7 +33,7 @@ const Layout = () => {
         }}
         paddingY={5}
       >
-        <Outlet />
+        {authUser ? <Outlet /> : <LoginPage />}
       </Box>
     </SearchProvider>
   );

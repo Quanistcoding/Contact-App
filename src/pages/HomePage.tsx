@@ -28,7 +28,7 @@ const HomePage = () => {
     signOut(auth);
   };
 
-  if (!authUser) return <Navigate to="/login" />;
+  //   if (!authUser) return <Navigate to="/login" />;
 
   return (
     <>
