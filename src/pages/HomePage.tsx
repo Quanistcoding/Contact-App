@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import User from "../entities/user";
 import UserTable from "../components/UserTable";
 import userService from "../services/userService";
-export interface userResource {
+export interface UserResource {
   id: string;
   user: User;
 }

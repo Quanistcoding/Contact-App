@@ -5,19 +5,25 @@ import {
   Input,
   useToast,
 } from "@chakra-ui/react";
-import { useState } from "react";
-import db from "../firebase";
-import { addDoc, collection } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
-import User from "../entities/user";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import userService from "../services/userService";
+import User from "../entities/user";
 
-const AddContactPapge = () => {
+const EditContactPage = () => {
+  const [user, setUser] = useState<User>();
+  const { id } = useParams();
+  useEffect(() => {
+    userService.findOne(id!).then((docSnap) => {
+      if (!docSnap.exists()) return;
+      setUser(docSnap.data());
+    });
+  }, []);
   const navigate = useNavigate();
-  const [data, setData] = useState<User>();
+
   const toast = useToast();
   const handleSubmit = (event: React.MouseEvent) => {
-    if (!data?.name) {
+    if (!user?.name) {
       return toast({
         title: "姓名不能是空白.",
         description: "別鬧了...",
@@ -28,17 +34,17 @@ const AddContactPapge = () => {
     }
 
     const userInput = {
-      name: data?.name,
-      phone: data?.phone || "",
-      address: data?.address || "",
+      name: user.name,
+      phone: user.phone || "",
+      address: user.address || "",
     };
 
     userService
-      .add(userInput)
+      .update(id!, userInput)
       .then((res) => {
         toast({
-          title: "Account created.",
-          description: "We've created your account for you.",
+          title: "更新成功",
+          description: "恩恩",
           status: "success",
           duration: 9000,
           isClosable: true,
@@ -49,7 +55,7 @@ const AddContactPapge = () => {
       })
       .catch((e) => {
         toast({
-          title: "新增失敗.",
+          title: "更新失敗.",
           description: e.message,
           status: "error",
           duration: 9000,
@@ -60,22 +66,37 @@ const AddContactPapge = () => {
 
   const handleInputChange = (event: React.FormEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
-    setData({ ...data, [target!.name]: target!.value });
-  };
 
+    setUser({ ...user, [target!.name]: target!.value });
+  };
   return (
     <form>
       <FormControl marginY={5}>
         <FormLabel>姓名</FormLabel>
-        <Input type="text" name="name" onInput={handleInputChange} />
+        <Input
+          type="text"
+          name="name"
+          onInput={handleInputChange}
+          value={user?.name || ""}
+        />
       </FormControl>
       <FormControl marginY={5}>
         <FormLabel>電話</FormLabel>
-        <Input type="text" name="phone" onInput={handleInputChange} />
+        <Input
+          type="text"
+          name="phone"
+          onInput={handleInputChange}
+          value={user?.phone || ""}
+        />
       </FormControl>
       <FormControl marginY={5}>
         <FormLabel>地址</FormLabel>
-        <Input type="text" name="address" onInput={handleInputChange} />
+        <Input
+          type="text"
+          name="address"
+          onInput={handleInputChange}
+          value={user?.address || ""}
+        />
       </FormControl>
       <Button colorScheme="yellow" onClick={handleSubmit}>
         送出
@@ -84,4 +105,4 @@ const AddContactPapge = () => {
   );
 };
 
-export default AddContactPapge;
+export default EditContactPage;

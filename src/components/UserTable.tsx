@@ -12,6 +12,7 @@ import {
   Tfoot,
   Button,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 interface Props {
   users: userResource[];
@@ -47,9 +48,11 @@ const UserTable = ({ users, onDelete }: Props) => {
                 >
                   刪除
                 </Button>
-                <Button colorScheme="yellow" marginX={1}>
-                  修改
-                </Button>
+                <Link to={"edit/" + id}>
+                  <Button colorScheme="yellow" marginX={1}>
+                    修改
+                  </Button>
+                </Link>
               </Td>
             </Tr>
           ))}

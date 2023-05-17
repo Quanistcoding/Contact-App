@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "./pages/Layout";
 import HomePage from "./pages/HomePage";
-import AddContactPapge from "./pages/AddContactPapge";
+import AddContactPage from "./pages/AddContactPage";
+import EditContactPage from "./pages/EditContactPage";
 
 const routes = createBrowserRouter([
   {
@@ -9,7 +10,8 @@ const routes = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: "add", element: <AddContactPapge /> },
+      { path: "add", element: <AddContactPage /> },
+      { path: "edit/:id", element: <EditContactPage /> },
     ],
   },
 ]);
