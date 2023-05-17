@@ -9,16 +9,11 @@ import { useState } from "react";
 import db from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-
-interface ContactData {
-  name?: string;
-  phone?: string;
-  address?: string;
-}
+import User from "../entities/user";
 
 const AddContactPapge = () => {
   const navigate = useNavigate();
-  const [data, setData] = useState<ContactData>();
+  const [data, setData] = useState<User>();
   const toast = useToast();
   const handleSubmit = async (event: React.MouseEvent) => {
     if (!data?.name) {
