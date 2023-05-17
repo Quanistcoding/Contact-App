@@ -8,11 +8,8 @@ const useUsers = () => {
   const { searchText } = useSearch();
 
   useEffect(() => {
-    userService.find().then((querySnapshot) => {
-      const data: UserResource[] = [];
-      querySnapshot.forEach((doc) => {
-        data.push({ id: doc.id, user: doc.data() });
-      });
+    userService.findRealTime((data) => {
+      console.log(data);
       setUsers(data);
     });
   }, [searchText]);

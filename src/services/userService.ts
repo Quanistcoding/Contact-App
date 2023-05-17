@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, query, updateDoc, where } from "firebase/firestore";
 import {db} from "../firebase";
 import User from "../entities/user";
 
@@ -7,6 +7,18 @@ class UserService {
 
     find = () =>{
         return getDocs(collection(db, this.dbName));
+    }
+
+    findRealTime = (fn:(data:any)=>void) =>{
+        const q = query(collection(db, this.dbName));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            const data:any = [];
+            querySnapshot.forEach((doc) => {
+                data.push({id:doc.id,user:doc.data()});
+            });
+            fn(data);
+          });
+          return unsubscribe;
     }
 
     findOne = (id:string) =>{

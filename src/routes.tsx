@@ -5,7 +5,6 @@ import AddContactPage from "./pages/AddContactPage";
 import EditContactPage from "./pages/EditContactPage";
 import UserDetaillPage from "./pages/UserDetaillPage";
 import LoginPage from "./pages/LoginPage";
-import PrivateRoutes from "./pages/PrivateRoutes";
 
 const routes = createBrowserRouter([
   {
