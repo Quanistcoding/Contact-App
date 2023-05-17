@@ -5,16 +5,14 @@ import {
   Input,
   useToast,
 } from "@chakra-ui/react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import userService from "../services/userService";
 import useUser from "../hooks/useUser";
-import useAuth from "../providers/authProvider/useAuth";
 
 const EditContactPage = () => {
   const { id } = useParams();
   const { user, setUser } = useUser(id!);
   const navigate = useNavigate();
-  const authUser = useAuth();
   const toast = useToast();
   const handleSubmit = () => {
     if (!user?.name) {

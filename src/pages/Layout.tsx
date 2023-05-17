@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar";
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
 import SearchProvider from "../providers/searchProvider";
 import useAuth from "../providers/authProvider/useAuth";

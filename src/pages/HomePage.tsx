@@ -1,5 +1,4 @@
 import { Button } from "@chakra-ui/react";
-import { Navigate } from "react-router-dom";
 import User from "../entities/user";
 import UserTable from "../components/UserTable";
 import userService from "../services/userService";
