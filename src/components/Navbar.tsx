@@ -8,7 +8,14 @@ const Navbar = () => {
     <HStack padding={1} bg="gray.700">
       <Box whiteSpace={"nowrap"}>
         <Link to="/">
-          <Text color="white">THE BIG</Text>
+          <Text
+            color="white"
+            _hover={{
+              color: "red.300",
+            }}
+          >
+            THE BIG
+          </Text>
         </Link>
       </Box>
       <SearchInput />
