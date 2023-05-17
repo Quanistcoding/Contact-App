@@ -1,11 +1,9 @@
 import { Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import db from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import User from "../entities/user";
 import UserTable from "../components/UserTable";
-
+import userService from "../services/userService";
 export interface userResource {
   id: string;
   user: User;
@@ -13,9 +11,15 @@ export interface userResource {
 
 const HomePage = () => {
   const [users, setUsers] = useState<userResource[]>([]);
+
+  const handleDelete = (id: string) => {
+    userService.delete(id);
+    setUsers(users.filter((user) => user.id !== id));
+  };
+
   useEffect(() => {
-    const data: userResource[] = [];
-    getDocs(collection(db, "users")).then((querySnapshot) => {
+    userService.find().then((querySnapshot) => {
+      const data: userResource[] = [];
       querySnapshot.forEach((doc) => {
         data.push({ id: doc.id, user: doc.data() });
       });
@@ -27,8 +31,8 @@ const HomePage = () => {
     <>
       <Link to="add">
         <Button colorScheme="blue">新增</Button>
-        <UserTable users={users} />
       </Link>
+      <UserTable users={users} onDelete={handleDelete} />
     </>
   );
 };

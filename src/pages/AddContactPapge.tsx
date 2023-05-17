@@ -10,12 +10,13 @@ import db from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import User from "../entities/user";
+import userService from "../services/userService";
 
 const AddContactPapge = () => {
   const navigate = useNavigate();
   const [data, setData] = useState<User>();
   const toast = useToast();
-  const handleSubmit = async (event: React.MouseEvent) => {
+  const handleSubmit = (event: React.MouseEvent) => {
     if (!data?.name) {
       return toast({
         title: "姓名不能是空白.",
@@ -26,31 +27,35 @@ const AddContactPapge = () => {
       });
     }
 
-    try {
-      const docRef = await addDoc(collection(db, "users"), {
-        name: data?.name,
-        phone: data?.phone || "",
-        address: data?.address || "",
+    const userInput = {
+      name: data?.name,
+      phone: data?.phone || "",
+      address: data?.address || "",
+    };
+
+    userService
+      .add(userInput)
+      .then((res) => {
+        toast({
+          title: "Account created.",
+          description: "We've created your account for you.",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
+        setTimeout(() => {
+          navigate("/");
+        }, 500);
+      })
+      .catch((e) => {
+        toast({
+          title: "新增失敗.",
+          description: e.message,
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
       });
-      toast({
-        title: "Account created.",
-        description: "We've created your account for you.",
-        status: "success",
-        duration: 9000,
-        isClosable: true,
-      });
-      setTimeout(() => {
-        navigate("/");
-      }, 500);
-    } catch (e: any) {
-      toast({
-        title: "新增失敗.",
-        description: e.message,
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      });
-    }
   };
 
   const handleInputChange = (event: React.FormEvent<HTMLInputElement>) => {
