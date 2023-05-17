@@ -5,29 +5,20 @@ import User from "../entities/user";
 import UserTable from "../components/UserTable";
 import userService from "../services/userService";
 import useSearch from "../providers/searchProvider/useSearch";
+import useUsers from "../hooks/useUsers";
 export interface UserResource {
   id: string;
   user: User;
 }
 
 const HomePage = () => {
-  const [users, setUsers] = useState<UserResource[]>([]);
+  const { users, setUsers } = useUsers();
   const { searchText } = useSearch();
 
   const handleDelete = (id: string) => {
     userService.delete(id);
     setUsers(users.filter((user) => user.id !== id));
   };
-
-  useEffect(() => {
-    userService.find().then((querySnapshot) => {
-      const data: UserResource[] = [];
-      querySnapshot.forEach((doc) => {
-        data.push({ id: doc.id, user: doc.data() });
-      });
-      setUsers(data);
-    });
-  }, [searchText]);
 
   return (
     <>

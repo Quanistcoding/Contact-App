@@ -5,20 +5,13 @@ import {
   Input,
   useToast,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import userService from "../services/userService";
-import User from "../entities/user";
+import useUser from "../hooks/userUser";
 
 const EditContactPage = () => {
-  const [user, setUser] = useState<User>();
   const { id } = useParams();
-  useEffect(() => {
-    userService.findOne(id!).then((docSnap) => {
-      if (!docSnap.exists()) return;
-      setUser(docSnap.data());
-    });
-  }, []);
+  const { user, setUser } = useUser(id!);
   const navigate = useNavigate();
 
   const toast = useToast();
@@ -49,9 +42,7 @@ const EditContactPage = () => {
           duration: 9000,
           isClosable: true,
         });
-        setTimeout(() => {
-          navigate("/");
-        }, 500);
+        navigate("/");
       })
       .catch((e) => {
         toast({
@@ -66,7 +57,6 @@ const EditContactPage = () => {
 
   const handleInputChange = (event: React.FormEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
-
     setUser({ ...user, [target!.name]: target!.value });
   };
   return (

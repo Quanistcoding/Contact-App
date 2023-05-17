@@ -9,10 +9,10 @@ const Layout = () => {
       <Navbar />
       <Box
         paddingX={{
-          sm: "10px",
-          md: "100px",
-          lg: "200px",
-          xl: "300px",
+          sm: "20px",
+          md: "50px",
+          lg: "70px",
+          xl: "80px",
         }}
         paddingY={5}
       >

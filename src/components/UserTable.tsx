@@ -8,6 +8,7 @@ import {
   Tbody,
   Td,
   Button,
+  Show,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { UserResource } from "../pages/HomePage";
@@ -26,32 +27,44 @@ const UserTable = ({ users, onDelete }: Props) => {
           <Tr fontSize={"xl"}>
             <Th>姓名</Th>
             <Th>電話</Th>
-            <Th>住址</Th>
-            <Th></Th>
+            <Show above="xl">
+              <Th>住址</Th>
+              <Th></Th>
+            </Show>
           </Tr>
         </Thead>
         <Tbody>
           {users.map(({ user, id }) => (
             <Tr key={id}>
-              <Td>{user.name}</Td>
-              <Td>{user.phone}</Td>
-              <Td>{user.address}</Td>
-              <Td>
-                <Button
-                  colorScheme="red"
-                  marginX={1}
-                  onClick={() => {
-                    onDelete(id);
-                  }}
-                >
-                  刪除
-                </Button>
-                <Link to={"edit/" + id}>
-                  <Button colorScheme="yellow" marginX={1}>
-                    修改
-                  </Button>
-                </Link>
+              <Td
+                _hover={{
+                  color: "green",
+                }}
+              >
+                <Link to={"/" + id}>{user.name}</Link>
               </Td>
+              <Td>{user.phone}</Td>
+              <Show above="xl">
+                <Td>{user.address}</Td>
+
+                <Td>
+                  <Button
+                    colorScheme="red"
+                    marginX={1}
+                    onClick={() => {
+                      const confirmed = confirm("確定刪除嗎？");
+                      if (confirmed) onDelete(id);
+                    }}
+                  >
+                    刪除
+                  </Button>
+                  <Link to={"edit/" + id}>
+                    <Button colorScheme="yellow" marginX={1}>
+                      修改
+                    </Button>
+                  </Link>
+                </Td>
+              </Show>
             </Tr>
           ))}
         </Tbody>

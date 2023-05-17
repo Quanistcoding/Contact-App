@@ -35,15 +35,13 @@ const AddContactPage = () => {
       .add(userInput)
       .then(() => {
         toast({
-          title: "新增失敗.",
+          title: "新增成功.",
           description: "嗨，" + data?.name,
           status: "success",
           duration: 9000,
           isClosable: true,
         });
-        setTimeout(() => {
-          navigate("/");
-        }, 500);
+        navigate("/");
       })
       .catch((e) => {
         toast({

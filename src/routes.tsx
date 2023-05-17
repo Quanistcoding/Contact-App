@@ -3,6 +3,7 @@ import Layout from "./pages/Layout";
 import HomePage from "./pages/HomePage";
 import AddContactPage from "./pages/AddContactPage";
 import EditContactPage from "./pages/EditContactPage";
+import UserDetaillPage from "./pages/UserDetaillPage";
 
 const routes = createBrowserRouter([
   {
@@ -10,6 +11,7 @@ const routes = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <HomePage /> },
+      { path: ":id", element: <UserDetaillPage /> },
       { path: "add", element: <AddContactPage /> },
       { path: "edit/:id", element: <EditContactPage /> },
     ],
