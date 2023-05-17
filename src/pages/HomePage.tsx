@@ -1,11 +1,14 @@
 import { Button } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import User from "../entities/user";
 import UserTable from "../components/UserTable";
 import userService from "../services/userService";
 import useSearch from "../providers/searchProvider/useSearch";
 import useUsers from "../hooks/useUsers";
+import { auth } from "../firebase";
+import { signOut } from "firebase/auth";
+import useAuth from "../providers/authProvider/useAuth";
+
 export interface UserResource {
   id: string;
   user: User;
@@ -14,21 +17,42 @@ export interface UserResource {
 const HomePage = () => {
   const { users, setUsers } = useUsers();
   const { searchText } = useSearch();
+  const { authUser } = useAuth();
 
   const handleDelete = (id: string) => {
     userService.delete(id);
     setUsers(users.filter((user) => user.id !== id));
   };
 
+  const logout = () => {
+    signOut(auth);
+  };
+
+  if (!authUser) return <Navigate to="/login" />;
+
   return (
     <>
-      <Link to="add">
+      {/* <Link to="add">
         <Button colorScheme="blue">新增</Button>
-      </Link>
+      </Link> */}
+      {authUser && (
+        <Button
+          colorScheme="green"
+          onClick={logout}
+          marginX={{
+            base: "10px",
+            sm: 0,
+          }}
+        >
+          登出
+        </Button>
+      )}
       <UserTable
         users={
           searchText
-            ? users.filter(({ user }) => user.name?.includes(searchText))
+            ? users.filter(({ user }) =>
+                user.name?.toLowerCase().includes(searchText.toLowerCase())
+              )
             : users
         }
         onDelete={handleDelete}

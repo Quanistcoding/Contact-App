@@ -1,5 +1,5 @@
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
-import db from "../firebase";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
+import {db} from "../firebase";
 import User from "../entities/user";
 
 class UserService {
@@ -11,6 +11,11 @@ class UserService {
 
     findOne = (id:string) =>{
         return getDoc(doc(db, this.dbName, id));
+    }
+
+    findOneByGoogleId = (id:string) => {
+        return getDocs(query(collection(db, this.dbName), where('googleId', '==',id)));
+        
     }
 
     add = (data : User) => {

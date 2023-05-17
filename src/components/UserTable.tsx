@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { UserResource } from "../pages/HomePage";
+import useAuth from "../providers/authProvider/useAuth";
 
 interface Props {
   users: UserResource[];
@@ -19,6 +20,7 @@ interface Props {
 }
 
 const UserTable = ({ users, onDelete }: Props) => {
+  const { authUser } = useAuth();
   return (
     <TableContainer>
       <Table variant="striped" colorScheme="teal">
@@ -46,24 +48,25 @@ const UserTable = ({ users, onDelete }: Props) => {
               <Td>{user.phone}</Td>
               <Show above="xl">
                 <Td>{user.address}</Td>
-
-                <Td>
-                  <Button
-                    colorScheme="red"
-                    marginX={1}
-                    onClick={() => {
-                      const confirmed = confirm("確定刪除嗎？");
-                      if (confirmed) onDelete(id);
-                    }}
-                  >
-                    刪除
-                  </Button>
-                  <Link to={"edit/" + id}>
-                    <Button colorScheme="yellow" marginX={1}>
-                      修改
+                {authUser?.uid === user.googleId && (
+                  <Td>
+                    <Button
+                      colorScheme="red"
+                      marginX={1}
+                      onClick={() => {
+                        const confirmed = confirm("確定刪除嗎？");
+                        if (confirmed) onDelete(id);
+                      }}
+                    >
+                      刪除
                     </Button>
-                  </Link>
-                </Td>
+                    <Link to={"edit/" + id}>
+                      <Button colorScheme="yellow" marginX={1}>
+                        修改
+                      </Button>
+                    </Link>
+                  </Td>
+                )}
               </Show>
             </Tr>
           ))}

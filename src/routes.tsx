@@ -4,12 +4,14 @@ import HomePage from "./pages/HomePage";
 import AddContactPage from "./pages/AddContactPage";
 import EditContactPage from "./pages/EditContactPage";
 import UserDetaillPage from "./pages/UserDetaillPage";
+import LoginPage from "./pages/LoginPage";
 
 const routes = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
+      { path: "login", element: <LoginPage /> },
       { index: true, element: <HomePage /> },
       { path: ":id", element: <UserDetaillPage /> },
       { path: "add", element: <AddContactPage /> },

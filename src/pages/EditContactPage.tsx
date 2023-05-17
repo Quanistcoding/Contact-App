@@ -5,15 +5,16 @@ import {
   Input,
   useToast,
 } from "@chakra-ui/react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import userService from "../services/userService";
-import useUser from "../hooks/userUser";
+import useUser from "../hooks/useUser";
+import useAuth from "../providers/authProvider/useAuth";
 
 const EditContactPage = () => {
   const { id } = useParams();
   const { user, setUser } = useUser(id!);
   const navigate = useNavigate();
-
+  const authUser = useAuth();
   const toast = useToast();
   const handleSubmit = () => {
     if (!user?.name) {
@@ -59,6 +60,8 @@ const EditContactPage = () => {
     const target = event.target as HTMLInputElement;
     setUser({ ...user, [target!.name]: target!.value });
   };
+
+  if (!authUser) return <Navigate to="/login" />;
   return (
     <form>
       <FormControl marginY={5}>

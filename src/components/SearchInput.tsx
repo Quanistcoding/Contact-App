@@ -2,7 +2,7 @@ import { Input } from "@chakra-ui/react";
 import useSearch from "../providers/searchProvider/useSearch";
 
 const SearchInput = () => {
-  const { searchText, setSearchText } = useSearch();
+  const { setSearchText } = useSearch();
 
   return (
     <form>

@@ -6,14 +6,16 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import User from "../entities/user";
 import userService from "../services/userService";
+import useAuth from "../providers/authProvider/useAuth";
 
 const AddContactPage = () => {
   const navigate = useNavigate();
   const [data, setData] = useState<User>();
   const toast = useToast();
+  const { authUser } = useAuth();
   const handleSubmit = () => {
     if (!data?.name) {
       return toast({
@@ -58,7 +60,7 @@ const AddContactPage = () => {
     const target = event.target as HTMLInputElement;
     setData({ ...data, [target!.name]: target!.value });
   };
-
+  if (!authUser) return <Navigate to="/login" />;
   return (
     <form>
       <FormControl marginY={5}>
