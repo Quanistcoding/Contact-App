@@ -2,8 +2,10 @@ import { Box, HStack, Text } from "@chakra-ui/react";
 import ColorModeSwitch from "./ColorModeSwitch";
 import { Link } from "react-router-dom";
 import SearchInput from "./SearchInput";
+import useAuth from "../providers/authProvider/useAuth";
 
 const Navbar = () => {
+  const { authUser } = useAuth();
   return (
     <HStack padding={1} bg="gray.700">
       <Box whiteSpace={"nowrap"}>
@@ -18,7 +20,7 @@ const Navbar = () => {
           </Text>
         </Link>
       </Box>
-      <SearchInput />
+      {authUser && <SearchInput />}
       <ColorModeSwitch />
     </HStack>
   );

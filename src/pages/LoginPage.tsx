@@ -35,8 +35,9 @@ const LoginPage = () => {
       onClick={login}
       colorScheme="blue"
       marginX={{
-        base: "10px",
-        sm: 0,
+        base: 2,
+        sm: 2,
+        md: 0,
       }}
     >
       請登入
