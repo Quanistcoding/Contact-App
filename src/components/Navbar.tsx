@@ -1,13 +1,17 @@
-import { Box, Button, HStack } from "@chakra-ui/react";
+import { Box, Button, HStack, Text } from "@chakra-ui/react";
 import ColorModeSwitch from "./ColorModeSwitch";
 import { Link } from "react-router-dom";
+import SearchInput from "./SearchInput";
 
 const Navbar = () => {
   return (
     <HStack padding={1} bg="gray.700">
-      <Link to="add">
-        <Button colorScheme="blue">新增</Button>
-      </Link>
+      <Box whiteSpace={"nowrap"}>
+        <Link to="/">
+          <Text color="white">THE BIG</Text>
+        </Link>
+      </Box>
+      <SearchInput />
       <ColorModeSwitch />
     </HStack>
   );
