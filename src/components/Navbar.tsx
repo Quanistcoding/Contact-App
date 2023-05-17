@@ -1,4 +1,4 @@
-import { Box, Button, HStack, Text } from "@chakra-ui/react";
+import { Box, HStack, Text } from "@chakra-ui/react";
 import ColorModeSwitch from "./ColorModeSwitch";
 import { Link } from "react-router-dom";
 import SearchInput from "./SearchInput";

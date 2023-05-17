@@ -14,7 +14,7 @@ const AddContactPage = () => {
   const navigate = useNavigate();
   const [data, setData] = useState<User>();
   const toast = useToast();
-  const handleSubmit = (event: React.MouseEvent) => {
+  const handleSubmit = () => {
     if (!data?.name) {
       return toast({
         title: "姓名不能是空白.",
@@ -33,7 +33,7 @@ const AddContactPage = () => {
 
     userService
       .add(userInput)
-      .then((res) => {
+      .then(() => {
         toast({
           title: "新增失敗.",
           description: "嗨，" + data?.name,

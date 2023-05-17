@@ -1,5 +1,3 @@
-import React from "react";
-import { userResource } from "../pages/HomePage";
 import {
   TableContainer,
   Table,
@@ -9,13 +7,13 @@ import {
   Th,
   Tbody,
   Td,
-  Tfoot,
   Button,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { UserResource } from "../pages/HomePage";
 
 interface Props {
-  users: userResource[];
+  users: UserResource[];
   onDelete: (id: string) => void;
 }
 

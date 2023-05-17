@@ -22,7 +22,7 @@ const EditContactPage = () => {
   const navigate = useNavigate();
 
   const toast = useToast();
-  const handleSubmit = (event: React.MouseEvent) => {
+  const handleSubmit = () => {
     if (!user?.name) {
       return toast({
         title: "姓名不能是空白.",
@@ -41,7 +41,7 @@ const EditContactPage = () => {
 
     userService
       .update(id!, userInput)
-      .then((res) => {
+      .then(() => {
         toast({
           title: "更新成功",
           description: "恩恩",

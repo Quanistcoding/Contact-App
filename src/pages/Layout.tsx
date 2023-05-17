@@ -1,11 +1,11 @@
-import React from "react";
 import Navbar from "../components/Navbar";
 import { Outlet } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
+import SearchProvider from "../providers/searchProvider";
 
 const Layout = () => {
   return (
-    <>
+    <SearchProvider>
       <Navbar />
       <Box
         paddingX={{
@@ -18,7 +18,7 @@ const Layout = () => {
       >
         <Outlet />
       </Box>
-    </>
+    </SearchProvider>
   );
 };
 
