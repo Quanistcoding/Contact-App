@@ -21,6 +21,8 @@ const Layout = () => {
     });
   }, [authUser]);
 
+  console.log("laytout render");
+
   return (
     <SearchProvider>
       <Navbar />

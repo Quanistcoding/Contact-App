@@ -9,7 +9,6 @@ const useUsers = () => {
 
   useEffect(() => {
     const unsubscribe = userService.findRealTime((data) => {
-      console.log(data);
       setUsers(data);
     });
 

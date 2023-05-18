@@ -1,5 +1,12 @@
-import { User } from "firebase/auth";
-import { Dispatch, ReactNode, createContext, useReducer } from "react";
+import { User, onAuthStateChanged } from "firebase/auth";
+import {
+  Dispatch,
+  ReactNode,
+  createContext,
+  useEffect,
+  useReducer,
+} from "react";
+import { auth } from "../../firebase";
 
 interface authAction {
   type: "SET_AUTHUSER";
@@ -24,6 +31,16 @@ interface Props {
 
 const AuthProvider = ({ children }: Props) => {
   const [authUser, setAuthUser] = useReducer(reducer, null);
+
+  // useEffect(() => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setAuthUser({ type: "SET_AUTHUSER", user });
+    } else {
+      setAuthUser({ type: "SET_AUTHUSER", user: null });
+    }
+  });
+  // }, [authUser]);
 
   return (
     <AuthContext.Provider

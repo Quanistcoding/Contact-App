@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../firebase";
 import { Navigate } from "react-router-dom";
@@ -27,21 +27,22 @@ const LoginPage = () => {
       });
   };
 
-  console.log(authUser);
   if (authUser) return <Navigate to="/" />;
 
   return (
-    <Button
-      onClick={login}
-      colorScheme="blue"
-      marginX={{
-        base: 2,
-        sm: 2,
-        md: 0,
-      }}
-    >
-      請登入
-    </Button>
+    <Flex align={"center"} justifyContent={"center"} height={"60vh"}>
+      <Button
+        onClick={login}
+        colorScheme="red"
+        marginX={{
+          base: 2,
+          sm: 2,
+          md: 0,
+        }}
+      >
+        Google 登入
+      </Button>
+    </Flex>
   );
 };
 
