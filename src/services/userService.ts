@@ -25,7 +25,7 @@ class UserService {
         return getDoc(doc(db, this.dbName, id));
     }
 
-    findOneByGoogleId = (id:string) => {
+    findByGoogleId = (id:string) => {
         return getDocs(query(collection(db, this.dbName), where('googleId', '==',id)));
         
     }

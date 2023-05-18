@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Button, HStack, Text } from "@chakra-ui/react";
 import User from "../entities/user";
 import UserTable from "../components/UserTable";
 import userService from "../services/userService";
@@ -7,6 +7,7 @@ import useUsers from "../hooks/useUsers";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import useAuth from "../providers/authProvider/useAuth";
+import useUserByGoogleId from "../hooks/useUserByGoogleId";
 
 export interface UserResource {
   id: string;
@@ -17,6 +18,7 @@ const HomePage = () => {
   const { users, setUsers } = useUsers();
   const { searchText } = useSearch();
   const { authUser } = useAuth();
+  const { user } = useUserByGoogleId(authUser!.uid);
 
   const handleDelete = (id: string) => {
     userService.delete(id);
@@ -34,19 +36,23 @@ const HomePage = () => {
       {/* <Link to="add">
         <Button colorScheme="blue">新增</Button>
       </Link> */}
-      {authUser && (
-        <Button
-          colorScheme="green"
-          onClick={logout}
-          marginX={{
-            base: 2,
-            sm: 2,
-            md: 0,
-          }}
-        >
-          登出
-        </Button>
-      )}
+      <HStack>
+        {authUser && (
+          <Button
+            colorScheme="green"
+            onClick={logout}
+            marginX={{
+              base: 2,
+              sm: 2,
+              md: 0,
+            }}
+          >
+            登出
+          </Button>
+        )}
+        <Text marginX={10}>您好，{user?.name}</Text>
+      </HStack>
+
       <UserTable
         users={
           searchText

@@ -1,20 +1,22 @@
-import { Box, Button, Flex, Image } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, useColorMode } from "@chakra-ui/react";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../firebase";
 import { Navigate } from "react-router-dom";
 import useAuth from "../providers/authProvider/useAuth";
 import userService from "../services/userService";
 import logo from "../assets/logo.png";
+import logo_dark from "../assets/logo_dark.png";
 
 const LoginPage = () => {
   const provider = new GoogleAuthProvider();
   const { authUser } = useAuth();
+  const { colorMode } = useColorMode();
   const login = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
 
-        userService.findOneByGoogleId(user.uid).then((querySnapshot) => {
+        userService.findByGoogleId(user.uid).then((querySnapshot) => {
           if (querySnapshot.empty) {
             userService.add({
               name: user.displayName || "",
@@ -31,9 +33,9 @@ const LoginPage = () => {
   if (authUser) return <Navigate to="/" />;
 
   return (
-    <Box height={"60vh"} marginTop={"100px"}>
-      <Flex justifyContent={"center"} marginY={10}>
-        <Image src={logo} />
+    <Box marginTop={"50px"}>
+      <Flex justifyContent={"center"} marginY={5}>
+        <Image src={colorMode === "light" ? logo : logo_dark} />
       </Flex>
 
       <Flex justifyContent={"center"}>

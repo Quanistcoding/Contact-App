@@ -9,10 +9,13 @@ import {
   Td,
   Button,
   Show,
+  Spinner,
+  Skeleton,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { UserResource } from "../pages/HomePage";
 import useAuth from "../providers/authProvider/useAuth";
+import useUsers from "../hooks/useUsers";
 
 interface Props {
   users: UserResource[];
@@ -21,8 +24,11 @@ interface Props {
 
 const UserTable = ({ users, onDelete }: Props) => {
   const { authUser } = useAuth();
+  const { isLoading } = useUsers();
   return (
     <>
+      {isLoading && <Skeleton></Skeleton>}
+
       <TableContainer>
         <Table variant="striped" colorScheme="teal">
           <TableCaption>大數據暨系統設計班通訊錄</TableCaption>
@@ -50,7 +56,7 @@ const UserTable = ({ users, onDelete }: Props) => {
                 <Show above="xl">
                   <Td>{user?.address || ""}</Td>
                   {authUser?.uid === user?.googleId ? (
-                    <Td>
+                    <Td padding={0}>
                       <Button
                         colorScheme="red"
                         marginX={1}
