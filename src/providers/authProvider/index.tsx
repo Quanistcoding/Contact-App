@@ -1,11 +1,5 @@
 import { User, onAuthStateChanged } from "firebase/auth";
-import {
-  Dispatch,
-  ReactNode,
-  createContext,
-  useEffect,
-  useReducer,
-} from "react";
+import { Dispatch, ReactNode, createContext, useReducer } from "react";
 import { auth } from "../../firebase";
 
 interface authAction {
