@@ -1,9 +1,10 @@
-import { Button, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, Image } from "@chakra-ui/react";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../firebase";
 import { Navigate } from "react-router-dom";
 import useAuth from "../providers/authProvider/useAuth";
 import userService from "../services/userService";
+import logo from "../assets/logo.png";
 
 const LoginPage = () => {
   const provider = new GoogleAuthProvider();
@@ -30,19 +31,25 @@ const LoginPage = () => {
   if (authUser) return <Navigate to="/" />;
 
   return (
-    <Flex align={"center"} justifyContent={"center"} height={"60vh"}>
-      <Button
-        onClick={login}
-        colorScheme="red"
-        marginX={{
-          base: 2,
-          sm: 2,
-          md: 0,
-        }}
-      >
-        Google 登入
-      </Button>
-    </Flex>
+    <Box height={"60vh"} marginTop={"100px"}>
+      <Flex justifyContent={"center"} marginY={10}>
+        <Image src={logo} />
+      </Flex>
+
+      <Flex justifyContent={"center"}>
+        <Button
+          onClick={login}
+          colorScheme="red"
+          marginX={{
+            base: 2,
+            sm: 2,
+            md: 0,
+          }}
+        >
+          Google 登入
+        </Button>
+      </Flex>
+    </Box>
   );
 };
 

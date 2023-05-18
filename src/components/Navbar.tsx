@@ -7,7 +7,7 @@ import useAuth from "../providers/authProvider/useAuth";
 const Navbar = () => {
   const { authUser } = useAuth();
   return (
-    <HStack padding={1} bg="gray.700">
+    <HStack padding={1} bg="gray.700" justifyContent={"space-between"}>
       <Box whiteSpace={"nowrap"}>
         <Link to="/">
           <Text
