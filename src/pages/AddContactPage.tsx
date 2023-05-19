@@ -8,7 +8,7 @@ import {
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import User from "../entities/user";
-import userService from "../services/userService";
+import UserService from "../services/userService";
 
 const AddContactPage = () => {
   const navigate = useNavigate();
@@ -31,8 +31,7 @@ const AddContactPage = () => {
       address: data?.address || "",
     };
 
-    userService
-      .add(userInput)
+    UserService.add(userInput)
       .then(() => {
         toast({
           title: "新增成功.",

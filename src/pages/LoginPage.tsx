@@ -3,9 +3,9 @@ import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../firebase";
 import { Navigate } from "react-router-dom";
 import useAuth from "../providers/authProvider/useAuth";
-import userService from "../services/userService";
 import logo from "../assets/logo.png";
 import logo_dark from "../assets/logo_dark.png";
+import UserService from "../services/userService";
 
 const LoginPage = () => {
   const provider = new GoogleAuthProvider();
@@ -16,9 +16,9 @@ const LoginPage = () => {
       .then((result) => {
         const user = result.user;
 
-        userService.findByGoogleId(user.uid).then((querySnapshot) => {
+        UserService.findByGoogleId(user.uid).then((querySnapshot) => {
           if (querySnapshot.empty) {
-            userService.add({
+            UserService.add({
               name: user.displayName || "",
               googleId: user.uid,
             });

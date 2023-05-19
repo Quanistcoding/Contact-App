@@ -11,16 +11,6 @@ import LoginPage from "./LoginPage";
 const Layout = () => {
   const { authUser, setAuthUser } = useAuth();
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setAuthUser({ type: "SET_AUTHUSER", user });
-      } else {
-        setAuthUser({ type: "SET_AUTHUSER", user: null });
-      }
-    });
-  }, [authUser]);
-
   console.log("laytout render");
 
   return (

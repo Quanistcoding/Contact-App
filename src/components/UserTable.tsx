@@ -9,16 +9,15 @@ import {
   Td,
   Button,
   Show,
-  Spinner,
   Skeleton,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { UserResource } from "../pages/HomePage";
 import useAuth from "../providers/authProvider/useAuth";
 import useUsers from "../hooks/useUsers";
+import User from "../entities/user";
 
 interface Props {
-  users: UserResource[];
+  users: User[];
   onDelete: (id: string) => void;
 }
 
@@ -27,7 +26,7 @@ const UserTable = ({ users, onDelete }: Props) => {
   const { isLoading } = useUsers();
   return (
     <>
-      {isLoading && <Skeleton></Skeleton>}
+      {isLoading && <Skeleton height={300} marginTop={5}></Skeleton>}
 
       <TableContainer>
         <Table variant="striped" colorScheme="teal">
@@ -43,31 +42,32 @@ const UserTable = ({ users, onDelete }: Props) => {
             </Tr>
           </Thead>
           <Tbody>
-            {users?.map(({ user, id }, index) => (
-              <Tr key={index}>
+            {users?.map((user) => (
+              <Tr key={user.id}>
                 <Td
                   _hover={{
                     color: "green",
                   }}
                 >
-                  <Link to={"/" + id}>{user?.name || ""}</Link>
+                  <Link to={"/" + user.id}>{user?.name || ""}</Link>
                 </Td>
                 <Td>{user?.phone || ""}</Td>
                 <Show above="xl">
                   <Td>{user?.address || ""}</Td>
-                  {authUser?.uid === user?.googleId ? (
+                  {authUser?.uid === "HYlo4Re63wbgmPKFF5FC49H5U303" ||
+                  authUser?.uid === user?.googleId ? (
                     <Td padding={0}>
                       <Button
                         colorScheme="red"
                         marginX={1}
                         onClick={() => {
                           const confirmed = confirm("確定刪除嗎？");
-                          if (confirmed) onDelete(id);
+                          if (confirmed) onDelete(user.id!);
                         }}
                       >
                         刪除
                       </Button>
-                      <Link to={"edit/" + id}>
+                      <Link to={"edit/" + user.id}>
                         <Button colorScheme="yellow" marginX={1}>
                           修改
                         </Button>

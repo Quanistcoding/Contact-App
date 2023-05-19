@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import userService from "../services/userService";
+import UserService from "../services/userService";
 import User from "../entities/user";
 
 const useUser = (id: string) => {
   const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
-    userService.findOne(id!).then((docSnap) => {
+    UserService.findOne(id!).then((docSnap) => {
       if (docSnap.exists()) setUser(docSnap.data() as User);
     });
   }, []);

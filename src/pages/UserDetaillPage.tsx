@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import useUser from "../hooks/useUser";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
-import userService from "../services/userService";
+import UserService from "../services/userService";
 import useAuth from "../providers/authProvider/useAuth";
 
 const UserDetaillPage = () => {
@@ -44,7 +44,7 @@ const UserDetaillPage = () => {
             onClick={() => {
               const confirmed = confirm("確定刪除嗎？");
               if (confirmed)
-                userService.delete(id!).then(() => {
+                UserService.delete(id!).then(() => {
                   toast({
                     title: "刪除成功.",
                     description: "....",

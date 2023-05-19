@@ -5,6 +5,8 @@ import AddContactPage from "./pages/AddContactPage";
 import EditContactPage from "./pages/EditContactPage";
 import UserDetaillPage from "./pages/UserDetaillPage";
 import LoginPage from "./pages/LoginPage";
+import ButtetinPage from "./pages/ButtetinPage";
+import AddBulletinPage from "./pages/AddBulletinPage";
 
 const routes = createBrowserRouter([
   {
@@ -16,6 +18,8 @@ const routes = createBrowserRouter([
       { path: ":id", element: <UserDetaillPage /> },
       { path: "add", element: <AddContactPage /> },
       { path: "edit/:id", element: <EditContactPage /> },
+      { path: "bulletin", element: <ButtetinPage /> },
+      { path: "bulletin/add", element: <AddBulletinPage /> },
     ],
   },
 ]);

@@ -1,13 +1,14 @@
 import { Button, HStack, Text } from "@chakra-ui/react";
 import User from "../entities/user";
 import UserTable from "../components/UserTable";
-import userService from "../services/userService";
+import UserService from "../services/userService";
 import useSearch from "../providers/searchProvider/useSearch";
 import useUsers from "../hooks/useUsers";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import useAuth from "../providers/authProvider/useAuth";
 import useUserByGoogleId from "../hooks/useUserByGoogleId";
+import { Link } from "react-router-dom";
 
 export interface UserResource {
   id: string;
@@ -21,8 +22,8 @@ const HomePage = () => {
   const { user } = useUserByGoogleId(authUser!.uid);
 
   const handleDelete = (id: string) => {
-    userService.delete(id);
-    setUsers(users.filter((user) => user.id !== id));
+    UserService.delete(id);
+    setUsers(users.filter((u) => u.id !== id));
   };
 
   const logout = () => {
@@ -36,7 +37,7 @@ const HomePage = () => {
       {/* <Link to="add">
         <Button colorScheme="blue">新增</Button>
       </Link> */}
-      <HStack>
+      <HStack justifyContent={"space-between"}>
         {authUser && (
           <Button
             colorScheme="green"
@@ -51,12 +52,17 @@ const HomePage = () => {
           </Button>
         )}
         <Text marginX={10}>您好，{user?.name}</Text>
+        <HStack>
+          <Link to={"/bulletin"}>
+            <Button variant={"link"}>公佈欄</Button>
+          </Link>
+          {/* <Button variant={"link"}>聊天室</Button> */}
+        </HStack>
       </HStack>
-
       <UserTable
         users={
           searchText
-            ? users.filter(({ user }) =>
+            ? users.filter((user) =>
                 user.name?.toLowerCase().includes(searchText.toLowerCase())
               )
             : users
