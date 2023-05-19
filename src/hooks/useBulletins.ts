@@ -9,7 +9,7 @@ const useBulletins = () => {
         bulletinService.find().then(res => {
             if(!res.empty){
                 res.forEach(d=> {
-                    data.push(d.data() as Bulletin)
+                    data.push({id:d.id,...d.data()} as Bulletin)
                 })
             }
             setBulletins(data);

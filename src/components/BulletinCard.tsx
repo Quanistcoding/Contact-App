@@ -1,22 +1,18 @@
 import { Card, CardBody, HStack, Text } from "@chakra-ui/react";
 import Bulletin from "../entities/bulletin";
+import getDate from "../services/getDate";
 
 interface Props {
   bulletin: Bulletin;
 }
 
 const BulletinCard = ({ bulletin }: Props) => {
-  const date =
-    new Date(bulletin?.date).getMonth() +
-    "月" +
-    new Date(bulletin?.date).getDate() +
-    "日";
   return (
     <Card borderColor={"gray.400"} borderWidth={1}>
       <CardBody>
         <HStack justifyContent={"space-between"}>
           <Text>發佈者: {bulletin?.author?.name}</Text>
-          <Text>{date}</Text>
+          <Text>{getDate(bulletin!.date)}</Text>
         </HStack>
       </CardBody>
       <CardBody>

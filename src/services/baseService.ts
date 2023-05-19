@@ -10,7 +10,7 @@ class BaseSerive<T>{
     }
 
     find = () =>{
-        return getDocs(collection(db, this.dbName));
+        return getDocs(query(collection(db, this.dbName)));
     }
 
     findRealTime = (fn:(data:any)=>void) =>{

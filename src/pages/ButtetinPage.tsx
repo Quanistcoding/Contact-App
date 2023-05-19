@@ -20,7 +20,9 @@ const ButtetinPage = () => {
         spacing={5}
       >
         {bulletins?.map((b, index) => (
-          <BulletinCard bulletin={b} key={index} />
+          <Link key={index} to={"/bulletin/" + b.id}>
+            <BulletinCard bulletin={b} />
+          </Link>
         ))}
       </SimpleGrid>
     </>
