@@ -5,5 +5,5 @@ export default interface Bulletin {
     title:string,
     date:number,
     content:string,
-    author:User | null
+    author?:User | null
 }

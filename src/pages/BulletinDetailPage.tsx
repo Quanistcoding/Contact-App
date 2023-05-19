@@ -8,7 +8,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import useBulletin from "../hooks/useBulletin";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import getDate from "../services/getDate";
 import useAuth from "../providers/authProvider/useAuth";
 import bulletinService from "../services/bulletinService";
@@ -20,7 +20,7 @@ const BulletinDetailPage = () => {
   const toast = useToast();
   const navigate = useNavigate();
   const handleDelete = (id?: string) => {
-    bulletinService.delete(id!).then((res) => {
+    bulletinService.delete(id!).then(() => {
       toast({
         title: "公告已刪除",
       });
@@ -38,7 +38,9 @@ const BulletinDetailPage = () => {
       <Text marginTop={2}>{bulletin?.content}</Text>
       {authUser?.uid === bulletin?.author?.googleId && (
         <Flex gap={2} marginTop={5}>
-          <Button colorScheme="green">修改</Button>
+          <Link to={"/bulletin/edit/" + bulletin?.id}>
+            <Button colorScheme="green">修改</Button>
+          </Link>
           <Button colorScheme="red" onClick={() => handleDelete(bulletin?.id)}>
             刪除
           </Button>

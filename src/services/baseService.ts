@@ -1,6 +1,5 @@
-import { DocumentData, WithFieldValue, addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, query, updateDoc, where } from "firebase/firestore";
+import { DocumentData,  addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, query, updateDoc } from "firebase/firestore";
 import {db} from "../firebase";
-import User from "../entities/user";
 
 class BaseSerive<T>{
     protected dbName;

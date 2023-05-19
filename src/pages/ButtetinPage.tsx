@@ -1,5 +1,4 @@
 import { Button, SimpleGrid } from "@chakra-ui/react";
-import React from "react";
 import BulletinCard from "../components/BulletinCard";
 import { Link } from "react-router-dom";
 import useBulletins from "../hooks/useBulletins";

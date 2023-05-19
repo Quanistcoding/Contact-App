@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import useSearch from "../providers/searchProvider/useSearch";
 import UserService from "../services/userService";
-import { UserResource } from "../pages/HomePage";
 import User from "../entities/user";
 
 const useUsers = () => {
