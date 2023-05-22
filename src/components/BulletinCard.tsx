@@ -7,6 +7,12 @@ interface Props {
 }
 
 const BulletinCard = ({ bulletin }: Props) => {
+  const maxLenghth = 14;
+  const contentText =
+    bulletin?.content.length > maxLenghth
+      ? bulletin?.content.substring(0, maxLenghth) + "..."
+      : bulletin?.content;
+
   return (
     <Card borderColor={"gray.400"} borderWidth={1}>
       <CardBody>
@@ -19,7 +25,7 @@ const BulletinCard = ({ bulletin }: Props) => {
         <Text>標題：{bulletin?.title}</Text>
       </CardBody>
       <CardBody>
-        <Text>內容：{bulletin?.content}</Text>
+        <Text>內容：{contentText}</Text>
       </CardBody>
     </Card>
   );
