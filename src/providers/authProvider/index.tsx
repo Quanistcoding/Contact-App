@@ -1,5 +1,11 @@
 import { User, onAuthStateChanged } from "firebase/auth";
-import { Dispatch, ReactNode, createContext, useReducer } from "react";
+import {
+  Dispatch,
+  ReactNode,
+  createContext,
+  useEffect,
+  useReducer,
+} from "react";
 import { auth } from "../../firebase";
 
 interface authAction {
@@ -26,15 +32,18 @@ interface Props {
 const AuthProvider = ({ children }: Props) => {
   const [authUser, setAuthUser] = useReducer(reducer, null);
 
-  // useEffect(() => {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setAuthUser({ type: "SET_AUTHUSER", user });
-    } else {
-      setAuthUser({ type: "SET_AUTHUSER", user: null });
-    }
-  });
-  // }, [authUser]);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setAuthUser({ type: "SET_AUTHUSER", user });
+      } else {
+        setAuthUser({ type: "SET_AUTHUSER", user: null });
+      }
+    });
+
+    console.log("1auth..........................");
+  }, []);
+  console.log("2auth..........................");
 
   return (
     <AuthContext.Provider

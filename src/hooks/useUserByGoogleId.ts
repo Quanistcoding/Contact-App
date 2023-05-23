@@ -15,7 +15,7 @@ const useUserByGoogleId = (googleId:string) => {
                 })                
             }
         })
-    })
+    },[])
 
     return {user}
 }

@@ -25,6 +25,7 @@ const EditBulletinPage = () => {
       title: title.current!.value,
       content: content.current!.value,
       date: Date.now(),
+      likedBy: [],
     };
 
     bulletinService.update(id!, data as Bulletin).then(() => {

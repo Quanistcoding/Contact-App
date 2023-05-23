@@ -7,7 +7,6 @@ import useAuth from "../providers/authProvider/useAuth";
 const Navbar = () => {
   const { authUser } = useAuth();
   const location = useLocation();
-  console.log(location);
   return (
     <HStack
       padding={1}

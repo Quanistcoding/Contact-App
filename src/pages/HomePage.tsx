@@ -21,6 +21,8 @@ const HomePage = () => {
   const { authUser } = useAuth();
   const { user } = useUserByGoogleId(authUser!.uid);
 
+  console.log("home render");
+
   const handleDelete = (id: string) => {
     UserService.delete(id);
     setUsers(users.filter((u) => u.id !== id));
@@ -48,13 +50,13 @@ const HomePage = () => {
               md: 0,
             }}
           >
-            登出
+            Log Out
           </Button>
         )}
-        <Text marginX={10}>您好，{user?.name}</Text>
+        <Text marginX={10}>Hi, {user?.name}</Text>
         <HStack>
           <Link to={"/bulletin"}>
-            <Button variant={"link"}>公佈欄</Button>
+            <Button variant={"link"}>Bulletin</Button>
           </Link>
           {/* <Button variant={"link"}>聊天室</Button> */}
         </HStack>

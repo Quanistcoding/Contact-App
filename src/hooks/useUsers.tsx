@@ -1,22 +1,31 @@
 import { useEffect, useState } from "react";
-import useSearch from "../providers/searchProvider/useSearch";
-import UserService from "../services/userService";
+import userService from "../services/userService";
 import User from "../entities/user";
 
 const useUsers = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const { searchText } = useSearch();
+  // const { searchText } = useSearch();
 
   useEffect(() => {
     setIsLoading(true);
-    const unsubscribe = UserService.findRealTime((data) => {
+
+    // const users: User[] = [];
+    // userService.find().then((docs) => {
+    //   docs.forEach((doc) => {
+    //     users.push({ ...doc.data, id: doc.id });
+    //   });
+    //   setIsLoading(false);
+    // });
+    // setUsers(users);
+
+    const unsubscribe = userService.findRealTime((data) => {
       setUsers(data);
       setIsLoading(false);
     });
 
     return unsubscribe;
-  }, [searchText]);
+  }, []);
   return { users, setUsers, isLoading };
 };
 

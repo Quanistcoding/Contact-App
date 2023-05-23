@@ -27,6 +27,7 @@ const AddBulletinPage = () => {
       content: content.current!.value,
       date: Date.now(),
       author: user!,
+      likedBy: [],
     };
     bulletinService.add(data as Bulletin).then(() => {
       toast({ title: "公告已新增", status: "success" });

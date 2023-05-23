@@ -33,10 +33,10 @@ const UserTable = ({ users, onDelete }: Props) => {
           <TableCaption>大數據暨系統設計班通訊錄</TableCaption>
           <Thead>
             <Tr fontSize={"xl"}>
-              <Th>姓名</Th>
-              <Th>電話</Th>
+              <Th>Name</Th>
+              <Th>Phone</Th>
               <Show above="xl">
-                <Th>住址</Th>
+                <Th>Address</Th>
                 <Th></Th>
               </Show>
             </Tr>

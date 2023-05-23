@@ -33,9 +33,9 @@ const LoginPage = () => {
   if (authUser) return <Navigate to="/" />;
 
   return (
-    <Box marginTop={"50px"}>
+    <Box marginTop={"40px"}>
       <Flex justifyContent={"center"} marginY={5}>
-        <Image src={colorMode === "light" ? logo : logo_dark} />
+        <Image src={colorMode === "light" ? logo : logo_dark} boxSize={250} />
       </Flex>
 
       <Flex justifyContent={"center"}>
@@ -48,7 +48,7 @@ const LoginPage = () => {
             md: 0,
           }}
         >
-          Google 登入
+          Sign in with Google
         </Button>
       </Flex>
     </Box>
