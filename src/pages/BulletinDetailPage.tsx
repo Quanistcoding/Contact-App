@@ -12,6 +12,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import getDate from "../services/getDate";
 import useAuth from "../providers/authProvider/useAuth";
 import bulletinService from "../services/bulletinService";
+import CommentInput from "../components/CommentInput";
 
 const BulletinDetailPage = () => {
   const { id } = useParams();
@@ -30,7 +31,9 @@ const BulletinDetailPage = () => {
 
   return (
     <Box paddingX={3}>
-      <Heading>{bulletin?.title}</Heading>
+      <Heading as="h1" fontSize={40}>
+        {bulletin?.title}
+      </Heading>
       <Divider />
       <Text marginTop={2}>{bulletin?.author?.name}</Text>
       <Text marginTop={2}>{getDate(bulletin?.date)}</Text>
@@ -46,6 +49,9 @@ const BulletinDetailPage = () => {
           </Button>
         </Flex>
       )}
+      <Box marginTop={5}>
+        <CommentInput />
+      </Box>
     </Box>
   );
 };

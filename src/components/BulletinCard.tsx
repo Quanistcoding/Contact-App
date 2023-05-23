@@ -4,6 +4,7 @@ import getDate from "../services/getDate";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import useLikedByOne from "../hooks/useLikedByOne";
+import CommentInput from "./CommentInput";
 
 interface Props {
   bulletin: Bulletin;
