@@ -1,4 +1,4 @@
-import { DocumentData,  addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, query, updateDoc } from "firebase/firestore";
+import { DocumentData,  addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, orderBy, query, updateDoc } from "firebase/firestore";
 import {db} from "../firebase";
 
 class BaseSerive<T>{
@@ -10,6 +10,10 @@ class BaseSerive<T>{
 
     find = () =>{
         return getDocs(query(collection(db, this.dbName)));
+    }
+
+    findOrderBy = () => {
+        return getDocs(query(collection(db, this.dbName),orderBy("date", "desc")));
     }
 
     findRealTime = (fn:(data:any)=>void) =>{
