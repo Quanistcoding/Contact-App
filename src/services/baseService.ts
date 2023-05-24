@@ -28,6 +28,18 @@ class BaseSerive<T>{
           return unsubscribe;
     }
 
+    findRealTimeOrderByDateAsc = (fn:(data:any)=>void) =>{
+        const q = query(collection(db, this.dbName),orderBy("date", "asc"));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            const data:any = [];
+            querySnapshot.forEach((doc) => {
+                data.push({...doc.data(),id:doc.id});                
+            });
+            fn(data);
+          });
+          return unsubscribe;
+    }
+
     findOne = (id:string) =>{
         return getDoc(doc(db, this.dbName, id));
     }

@@ -22,6 +22,7 @@ const CommentInput = ({ onSend, title, placeholder }: Props) => {
         onChange={(event) => setContent(event.target.value)}
       />
       <Button
+        paddingY={2}
         colorScheme="orange"
         marginTop={5}
         onClick={() => {
