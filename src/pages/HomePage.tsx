@@ -58,7 +58,9 @@ const HomePage = () => {
           <Link to={"/bulletin"}>
             <Button variant={"link"}>Bulletin</Button>
           </Link>
-          {/* <Button variant={"link"}>聊天室</Button> */}
+          <Link to={"/chatroom"}>
+            <Button variant={"link"}>Chat Room</Button>
+          </Link>
         </HStack>
       </HStack>
       <UserTable

@@ -76,7 +76,11 @@ const BulletinDetailPage = () => {
       </Box>
 
       <Box marginTop={5}>
-        <CommentInput onSend={handleCommentSend} />
+        <CommentInput
+          onSend={handleCommentSend}
+          title="Leave a Comment"
+          placeholder="Your comment..."
+        />
       </Box>
     </Box>
   );
