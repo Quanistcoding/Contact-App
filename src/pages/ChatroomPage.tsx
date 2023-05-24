@@ -21,15 +21,9 @@ const ChatroomPage = () => {
     chatService.add(chat);
   };
   return (
-    <Box>
+    <Box maxWidth={800} marginLeft={"auto"} marginRight={"auto"}>
       <Heading fontSize={30}>Chat Room</Heading>
-      <Stack
-        maxWidth={800}
-        marginLeft={"auto"}
-        marginRight={"auto"}
-        height={"82vh"}
-        justify={"flex-end"}
-      >
+      <Stack height={"82vh"} justify={"flex-end"}>
         <ChatList chats={chats} />
         <CommentInput
           onSend={handleSend}
