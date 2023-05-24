@@ -75,7 +75,7 @@ const BulletinDetailPage = () => {
         <CommentList comments={comments?.filter((b) => b.bulletinId === id)} />
       </Box>
 
-      <Box marginTop={5}>
+      <Box marginTop={5} maxWidth={800}>
         <CommentInput
           onSend={handleCommentSend}
           title="Leave a Comment"

@@ -1,4 +1,4 @@
-import { Box, Divider, Flex, Heading } from "@chakra-ui/react";
+import { Box, Divider, Flex, Heading, Show } from "@chakra-ui/react";
 import ChatList from "../components/ChatList";
 import CommentInput from "../components/CommentInput";
 import Chat from "../entities/chat";
@@ -21,13 +21,22 @@ const ChatroomPage = () => {
     chatService.add(chat);
   };
   return (
-    <Flex width="100%" pos="fixed" bottom="0" justifyContent={"center"}>
+    <Flex
+      width="100%"
+      left={0}
+      pos="fixed"
+      bottom="0"
+      justifyContent={"center"}
+    >
       <Box width={800}>
-        <Heading fontSize={30}>Chat Room</Heading>
-        <br />
-
-        <Divider />
-        <ChatList chats={chats} />
+        <Box paddingX={1}>
+          <Show above="sm">
+            <Heading fontSize={30}>Chat Room</Heading>
+            <br />
+          </Show>
+          <Divider />
+          <ChatList chats={chats} />
+        </Box>
         <Box maxWidth={800} width="100%">
           <CommentInput
             onSend={handleSend}
