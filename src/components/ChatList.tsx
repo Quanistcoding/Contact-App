@@ -15,7 +15,7 @@ const ChatList = ({ chats }: Props) => {
   }, [chats]);
 
   return (
-    <Box height={"60vh"} overflowY={"scroll"} ref={container} borderWidth={1}>
+    <Box height={"55vh"} overflowY={"scroll"} ref={container} borderWidth={1}>
       {chats?.map((c) => (
         <Box key={c.id}>
           {getDate(c.date) + ", " + c.author?.name + ": " + c.content}
