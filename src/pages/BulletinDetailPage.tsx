@@ -13,11 +13,18 @@ import getDate from "../services/getDate";
 import useAuth from "../providers/authProvider/useAuth";
 import bulletinService from "../services/bulletinService";
 import CommentInput from "../components/CommentInput";
+import CommentList from "../components/CommentList";
+import useComments from "../hooks/useComments";
+import commentService from "../services/commentService";
+import useUserByGoogleId from "../hooks/useUserByGoogleId";
+import Comment from "../entities/comment";
 
 const BulletinDetailPage = () => {
+  const { comments, setComments } = useComments();
   const { id } = useParams();
   const { bulletin } = useBulletin(id!);
   const { authUser } = useAuth();
+  const { user } = useUserByGoogleId(authUser!.uid);
   const toast = useToast();
   const navigate = useNavigate();
   const handleDelete = (id?: string) => {
@@ -26,6 +33,21 @@ const BulletinDetailPage = () => {
         title: "公告已刪除",
       });
       navigate("/bulletin");
+    });
+  };
+
+  const handleCommentSend = (content: string) => {
+    const comment: Comment = {
+      content: content,
+      author: user,
+      date: Date.now(),
+      bulletinId: id!,
+    };
+    setComments([...comments!, comment]);
+    commentService.add(comment).then(() => {
+      toast({
+        title: "Comment sent.",
+      });
     });
   };
 
@@ -50,7 +72,11 @@ const BulletinDetailPage = () => {
         </Flex>
       )}
       <Box marginTop={5}>
-        <CommentInput />
+        <CommentList comments={comments?.filter((b) => b.bulletinId === id)} />
+      </Box>
+
+      <Box marginTop={5}>
+        <CommentInput onSend={handleCommentSend} />
       </Box>
     </Box>
   );

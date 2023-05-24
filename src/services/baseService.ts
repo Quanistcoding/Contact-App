@@ -12,7 +12,7 @@ class BaseSerive<T>{
         return getDocs(query(collection(db, this.dbName)));
     }
 
-    findOrderBy = () => {
+    findOrderByDate = () => {
         return getDocs(query(collection(db, this.dbName),orderBy("date", "desc")));
     }
 
