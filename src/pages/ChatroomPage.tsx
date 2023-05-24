@@ -1,4 +1,4 @@
-import { Box, Heading, Stack } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import ChatList from "../components/ChatList";
 import CommentInput from "../components/CommentInput";
 import Chat from "../entities/chat";
@@ -23,14 +23,14 @@ const ChatroomPage = () => {
   return (
     <Box maxWidth={800} marginLeft={"auto"} marginRight={"auto"}>
       <Heading fontSize={30}>Chat Room</Heading>
-      <Stack height={"82vh"} justify={"flex-end"}>
-        <ChatList chats={chats} />
+      <ChatList chats={chats} />
+      <Box pos="fixed" bottom="0" maxWidth={800} width="100%">
         <CommentInput
           onSend={handleSend}
           title="Send Message"
           placeholder="Your message..."
         />
-      </Stack>
+      </Box>
     </Box>
   );
 };
