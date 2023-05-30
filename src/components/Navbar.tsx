@@ -1,8 +1,9 @@
-import { Box, HStack, Text } from "@chakra-ui/react";
+import { Box, HStack, Text, useColorMode, Image } from "@chakra-ui/react";
 import ColorModeSwitch from "./ColorModeSwitch";
 import { Link, useLocation } from "react-router-dom";
 import SearchInput from "./SearchInput";
 import useAuth from "../providers/authProvider/useAuth";
+import logo_dark from "../assets/logo_dark.png";
 
 const Navbar = () => {
   const { authUser } = useAuth();
@@ -22,11 +23,18 @@ const Navbar = () => {
               color: "red.300",
             }}
           >
-            THE BIG
+            <Image
+              src={logo_dark}
+              boxSize={"40x"}
+              width={"40px"}
+              objectFit={"cover"}
+            />
           </Text>
         </Link>
       </Box>
-      {authUser && location.pathname === "/" && <SearchInput />}
+      <Box flex={1}>
+        {authUser && location.pathname === "/" && <SearchInput />}
+      </Box>
       <ColorModeSwitch />
     </HStack>
   );

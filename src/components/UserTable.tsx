@@ -30,7 +30,7 @@ const UserTable = ({ users, onDelete }: Props) => {
 
       <TableContainer>
         <Table variant="striped" colorScheme="teal">
-          <TableCaption>大數據暨系統設計班通訊錄</TableCaption>
+          <TableCaption>Our Contacts</TableCaption>
           <Thead>
             <Tr fontSize={"xl"}>
               <Th>Name</Th>
@@ -61,15 +61,17 @@ const UserTable = ({ users, onDelete }: Props) => {
                         colorScheme="red"
                         marginX={1}
                         onClick={() => {
-                          const confirmed = confirm("確定刪除嗎？");
+                          const confirmed = confirm(
+                            "Are you sure you want to delete?"
+                          );
                           if (confirmed) onDelete(user.id!);
                         }}
                       >
-                        刪除
+                        Delete
                       </Button>
                       <Link to={"edit/" + user.id}>
                         <Button colorScheme="yellow" marginX={1}>
-                          修改
+                          Edit
                         </Button>
                       </Link>
                     </Td>

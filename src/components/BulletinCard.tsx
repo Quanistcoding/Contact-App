@@ -24,15 +24,15 @@ const BulletinCard = ({ bulletin, onLikeClick }: Props) => {
       <Link to={"/bulletin/" + bulletin.id}>
         <CardBody>
           <HStack justifyContent={"space-between"}>
-            <Text>發佈者: {bulletin?.author?.name}</Text>
+            <Text>Publisher: {bulletin?.author?.name}</Text>
             <Text>{getDate(bulletin!.date)}</Text>
           </HStack>
         </CardBody>
         <CardBody>
-          <Text>標題：{bulletin?.title}</Text>
+          <Text>Title: {bulletin?.title}</Text>
         </CardBody>
         <CardBody>
-          <Text marginBottom={2}>內容：{contentText}</Text>
+          <Text marginBottom={2}>Content: {contentText}</Text>
         </CardBody>
       </Link>
       <CardBody paddingTop={0} display={"flex"} alignItems={"center"}>

@@ -64,10 +64,10 @@ const BulletinDetailPage = () => {
       {authUser?.uid === bulletin?.author?.googleId && (
         <Flex gap={2} marginTop={5}>
           <Link to={"/bulletin/edit/" + bulletin?.id}>
-            <Button colorScheme="green">修改</Button>
+            <Button colorScheme="green">Edit</Button>
           </Link>
           <Button colorScheme="red" onClick={() => handleDelete(bulletin?.id)}>
-            刪除
+            Delete
           </Button>
         </Flex>
       )}

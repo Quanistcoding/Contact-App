@@ -37,7 +37,7 @@ const ButtetinPage = () => {
   return (
     <>
       <Link to="/bulletin/add">
-        <Button marginBottom={2}>新增公告</Button>
+        <Button marginBottom={2}>Add New</Button>
       </Link>
       <SimpleGrid
         columns={{
