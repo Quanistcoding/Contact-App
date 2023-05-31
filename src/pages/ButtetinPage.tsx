@@ -1,4 +1,4 @@
-import { Button, SimpleGrid } from "@chakra-ui/react";
+import { Box, Button, SimpleGrid } from "@chakra-ui/react";
 import BulletinCard from "../components/BulletinCard";
 import { Link } from "react-router-dom";
 import useBulletins from "../hooks/useBulletins";
@@ -35,7 +35,7 @@ const ButtetinPage = () => {
   };
 
   return (
-    <>
+    <Box paddingX={3}>
       <Link to="/bulletin/add">
         <Button marginBottom={2}>Add New</Button>
       </Link>
@@ -55,7 +55,7 @@ const ButtetinPage = () => {
           />
         ))}
       </SimpleGrid>
-    </>
+    </Box>
   );
 };
 
