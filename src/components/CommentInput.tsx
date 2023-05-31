@@ -29,7 +29,13 @@ const CommentInput = ({ onSend, title, placeholder }: Props) => {
           onChange={(event) => setContent(event.target.value)}
         />
       </Box>
-      <Button width={"100%"} paddingY={2} colorScheme="orange" marginTop={5}>
+      <Button
+        width={"100%"}
+        paddingY={2}
+        colorScheme="orange"
+        marginTop={5}
+        type="submit"
+      >
         Send
       </Button>
     </form>

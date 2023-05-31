@@ -61,19 +61,19 @@ const AddContactPage = () => {
   return (
     <form>
       <FormControl marginY={5}>
-        <FormLabel>姓名</FormLabel>
+        <FormLabel>Name</FormLabel>
         <Input type="text" name="name" onInput={handleInputChange} />
       </FormControl>
       <FormControl marginY={5}>
-        <FormLabel>電話</FormLabel>
+        <FormLabel>Phone</FormLabel>
         <Input type="text" name="phone" onInput={handleInputChange} />
       </FormControl>
       <FormControl marginY={5}>
-        <FormLabel>地址</FormLabel>
+        <FormLabel>Address</FormLabel>
         <Input type="text" name="address" onInput={handleInputChange} />
       </FormControl>
       <Button colorScheme="yellow" onClick={handleSubmit}>
-        送出
+        Send
       </Button>
     </form>
   );

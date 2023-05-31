@@ -5,6 +5,7 @@ import {
   Textarea,
   Button,
   useToast,
+  Box,
 } from "@chakra-ui/react";
 import Bulletin from "../entities/bulletin";
 import bulletinService from "../services/bulletinService";
@@ -30,27 +31,29 @@ const AddBulletinPage = () => {
       likedBy: [],
     };
     bulletinService.add(data as Bulletin).then(() => {
-      toast({ title: "公告已新增", status: "success" });
+      toast({ title: "Bulletin Added", status: "success" });
       navigate("/bulletin");
     });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <FormControl padding={1} marginY={2} isRequired>
-        <FormLabel fontWeight={"extrabold"}>標題</FormLabel>
-        <Input type="text" ref={title} />
-      </FormControl>
-      <FormControl padding={1} marginY={2} isRequired>
-        <FormLabel fontWeight={"extrabold"} marginTop={3}>
-          內容
-        </FormLabel>
-        <Textarea placeholder="..." ref={content} />
-      </FormControl>
-      <Button colorScheme="blue" type="submit">
-        新增公告
-      </Button>
-    </form>
+    <Box paddingX={3}>
+      <form onSubmit={handleSubmit}>
+        <FormControl padding={1} marginY={2} isRequired>
+          <FormLabel fontWeight={"extrabold"}>Title</FormLabel>
+          <Input type="text" ref={title} />
+        </FormControl>
+        <FormControl padding={1} marginY={2} isRequired>
+          <FormLabel fontWeight={"extrabold"} marginTop={3}>
+            Content
+          </FormLabel>
+          <Textarea placeholder="..." ref={content} />
+        </FormControl>
+        <Button colorScheme="blue" type="submit">
+          Add
+        </Button>
+      </form>
+    </Box>
   );
 };
 
