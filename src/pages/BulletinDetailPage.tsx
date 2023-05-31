@@ -28,12 +28,17 @@ const BulletinDetailPage = () => {
   const toast = useToast();
   const navigate = useNavigate();
   const handleDelete = (id?: string) => {
-    bulletinService.delete(id!).then(() => {
-      toast({
-        title: "公告已刪除",
+    const confirmed = confirm("Are you sure you want to delete?");
+    if (confirmed) {
+      bulletinService.delete(id!).then(() => {
+        commentService.deleteAllByBulletinId(id!);
+
+        toast({
+          title: "Bulletin deleted.",
+        });
+        navigate("/bulletin");
       });
-      navigate("/bulletin");
-    });
+    }
   };
 
   const handleCommentSend = (content: string) => {

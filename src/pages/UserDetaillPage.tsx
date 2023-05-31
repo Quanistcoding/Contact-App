@@ -29,11 +29,11 @@ const UserDetaillPage = () => {
       </CardHeader>
       <CardBody>
         <Box>
-          <Text>電話：{user?.phone}</Text>
+          <Text>Phone: {user?.phone}</Text>
         </Box>
         <hr></hr>
         <Box>
-          <Text>住址：{user?.address}</Text>
+          <Text>Address: {user?.address}</Text>
         </Box>
       </CardBody>
       {authUser.uid === user?.googleId && (
@@ -42,11 +42,11 @@ const UserDetaillPage = () => {
             colorScheme="red"
             marginX={1}
             onClick={() => {
-              const confirmed = confirm("確定刪除嗎？");
+              const confirmed = confirm("Are you sure you want to delete?");
               if (confirmed)
                 UserService.delete(id!).then(() => {
                   toast({
-                    title: "刪除成功.",
+                    title: "User deleted.",
                     description: "....",
                     status: "success",
                     duration: 9000,
@@ -56,11 +56,11 @@ const UserDetaillPage = () => {
                 });
             }}
           >
-            刪除
+            Delete
           </Button>
           <Link to={"/edit/" + id}>
             <Button colorScheme="yellow" marginX={1}>
-              修改
+              Edit
             </Button>
           </Link>
         </Flex>
